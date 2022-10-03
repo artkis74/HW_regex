@@ -83,8 +83,8 @@ def del_copys():
                                 new_lists.pop(i)
                             new_lists.insert(i, lists[i])
         new_data.append(new_lists[0:5])
-    for p in list_copys:
-        copys.extend(p)
+    for r in list_copys:
+        copys.extend(r)
     for list_data in data[1:len(data)]:
         if data.index(list_data) not in copys:
             new_data.append(list_data)
