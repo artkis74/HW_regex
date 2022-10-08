@@ -13,7 +13,7 @@ def OpenFile():
 def get_contacts():
     data = OpenFile()
     phone_list = []
-    fields = [data[0][0], data[0][1], data[0][2], data[0][5], data[0][6]]
+    fields = [data[0][0], data[0][1], data[0][2], data[0][4], data[0][5], data[0][6]]
     phone_list.append(fields)
     pattern = r'[ЁА-Я]\w+'
     for elements in data:
@@ -28,7 +28,7 @@ def get_contacts():
         if len(man_list) != 3:
             for i in range(3 - len(man_list)):
                 man_list.append('')
-        man_list.extend(elements[5:7])
+        man_list.extend(elements[4:7])
     return phone_list
 
 
@@ -68,27 +68,27 @@ def del_copys():
     list_copys = get_copys()
     copys = []
     data = change_numbers()
-    new_data = []
-    new_data.append(data[0])
+    new_data = [data[0]]
     new_lists = []
     for elements in list_copys:
-        for values in elements:
+        for items in elements:
             for lists in data:
-                if data.index(lists) == values:
-                    for i in range(5):
-                        # print(i)
+                if data.index(lists) == items:
+                    for i in range(6):
                         if lists[i] not in new_lists and len(lists[i]) > 0:
                             new_lists.append('')
                             if i < len(new_lists):
                                 new_lists.pop(i)
                             new_lists.insert(i, lists[i])
-        new_data.append(new_lists[0:5])
-    for r in list_copys:
-        copys.extend(r)
+        new_data.append(new_lists[0:7])
+        new_lists = []
+    for p in list_copys:
+        copys.extend(p)
     for list_data in data[1:len(data)]:
         if data.index(list_data) not in copys:
             new_data.append(list_data)
     return new_data
+
 
 # TODO 2: сохраните получившиеся данные в другой файл
 
